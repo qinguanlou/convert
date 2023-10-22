@@ -201,7 +201,6 @@ ruleset=🐟 漏网之鱼,[]FINAL
 custom_proxy_group=🔰 节点选择`select`[]♻️ 自动选择`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🚀 手动切换`[]DIRECT
 custom_proxy_group=🚀 手动切换`select`^((?!官网|订阅|域名|时间|流量|重置|套餐|Traffic|Expire).)*$
 custom_proxy_group=♻️ 自动选择`url-test`^((?!官网|订阅|域名|时间|流量|重置|套餐|amd|arm|腾讯云|RackNerd|AWS|Buyvm|Netcup|Hytron|HKT|Akile|失联|Traffic|Expire|雞蛋仔|燒鴨飯|豬血湯|牛舌餅|叻沙|辣蟹|鯛魚燒|烏賊燒|甜甜圈|法士達).)*$`http://www.gstatic.com/generate_204`600,,50
-custom_proxy_group=♻️ 自动选择`relay`[]🇭🇰 香港节点`[]🚀 自建节点
 custom_proxy_group=📲 电报消息`select`[]🔰 节点选择`[]♻️ 自动选择`[]🇸🇬 狮城节点`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🚀 菜市场`[]🚀 手动切换
 custom_proxy_group=📹 油管视频`select`[]🔰 节点选择`[]♻️ 自动选择`[]🇸🇬 狮城节点`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🚀 手动切换
 custom_proxy_group=🎬 TikTok`select`[]🔰 节点选择`[]♻️ 自动选择`[]🇸🇬 狮城节点`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🚀 手动切换
@@ -237,6 +236,7 @@ custom_proxy_group=🎥 奈飞节点1`select`^((?!官网|订阅|域名|时间|�
 custom_proxy_group=🎥 奈飞节点2`select`^((?!官网|订阅|域名|时间|流量|套餐|Traffic|Expire).)*(实验性|标准|高级)((?!官网|订阅|域名|时间|流量|套餐|Traffic|Expire).)*$
 custom_proxy_group=🎥 奈飞节点3`select`^((?!IEPL|官网|订阅|域名|时间|流量|套餐|amd|arm|腾讯云|RackNerd|AWS|Buyvm|Netcup|Hytron|HKT|Akile|失联|Traffic|Expire|雞蛋仔|燒鴨飯|豬血湯|牛舌餅|叻沙|辣蟹|鯛魚燒|烏賊燒|甜甜圈|法士達).)*(香港|台湾|美国|新加坡|日本|韩国)((?!IEPL|官网|订阅|域名|时间|流量|套餐|amd|arm|腾讯云|RackNerd|AWS|Buyvm|Netcup|Hytron|HKT|Akile|失联|Traffic|Expire|雞蛋仔|燒鴨飯|豬血湯|牛舌餅|叻沙|辣蟹|鯛魚燒|烏賊燒|甜甜圈|法士達).)*$
 custom_proxy_group=🎥 奈飞节点4`select`^((?!官网|订阅|域名|时间|流量|套餐|Traffic|Expire).)*(雞蛋仔|燒鴨飯|豬血湯|牛舌餅|叻沙|辣蟹|鯛魚燒|烏賊燒|甜甜圈|法士達)((?!官网|订阅|域名|时间|流量|套餐|Traffic|Expire).)*$
+custom_proxy_group=♻️ 自动选择`relay`[]🇭🇰 香港节点`[]🚀 自建节点
 ;设置分组标志位
 
 enable_rule_generator=true
