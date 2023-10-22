@@ -236,7 +236,7 @@ custom_proxy_group=🎥 奈飞节点1`select`^((?!官网|订阅|域名|时间|�
 custom_proxy_group=🎥 奈飞节点2`select`^((?!官网|订阅|域名|时间|流量|套餐|Traffic|Expire).)*(实验性|标准|高级)((?!官网|订阅|域名|时间|流量|套餐|Traffic|Expire).)*$
 custom_proxy_group=🎥 奈飞节点3`select`^((?!IEPL|官网|订阅|域名|时间|流量|套餐|amd|arm|腾讯云|RackNerd|AWS|Buyvm|Netcup|Hytron|HKT|Akile|失联|Traffic|Expire|雞蛋仔|燒鴨飯|豬血湯|牛舌餅|叻沙|辣蟹|鯛魚燒|烏賊燒|甜甜圈|法士達).)*(香港|台湾|美国|新加坡|日本|韩国)((?!IEPL|官网|订阅|域名|时间|流量|套餐|amd|arm|腾讯云|RackNerd|AWS|Buyvm|Netcup|Hytron|HKT|Akile|失联|Traffic|Expire|雞蛋仔|燒鴨飯|豬血湯|牛舌餅|叻沙|辣蟹|鯛魚燒|烏賊燒|甜甜圈|法士達).)*$
 custom_proxy_group=🎥 奈飞节点4`select`^((?!官网|订阅|域名|时间|流量|套餐|Traffic|Expire).)*(雞蛋仔|燒鴨飯|豬血湯|牛舌餅|叻沙|辣蟹|鯛魚燒|烏賊燒|甜甜圈|法士達)((?!官网|订阅|域名|时间|流量|套餐|Traffic|Expire).)*$
-;custom_proxy_group=♻️ 自动选择`relay`[]🇭🇰 香港节点`[]🚀 自建节点
+custom_proxy_group=♻️ 自动选择`relay`[]🇭🇰 香港节点`[]🚀 自建节点
 ;设置分组标志位
 
 enable_rule_generator=true
