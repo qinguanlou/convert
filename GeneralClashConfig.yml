@@ -12,7 +12,6 @@ experimental:
 
 # =================Profile 缓存设置=================
 profile:
-  # 【优化1】持久化 Fake-IP：重启/重载配置后不断网，保留假 IP 映射
   store-fake-ip: true
 
 # =================嗅探设置 (Fake-IP 绝配)=================
@@ -34,50 +33,52 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: false
   
-  # 【优化2】使 DNS 查询也受分流规则控制，避免国外 DNS 请求直连被墙卡死
+  # 开启规则遵循，使 DNS 统一受分流规则控制
   respect-rules: true
   
-  # 【优化3】开启 Fake-IP 模式，实现本地解析 0 延迟
+  # 开启 Fake-IP 模式
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   
-  # 【优化4】Fake-IP 黑名单：以下域名必须返回真实 IP，防止系统功能或局域网瘫痪
+  # Fake-IP 白名单（防止系统或局域网瘫痪）
   fake-ip-filter:
     - "*.lan"
     - "*.local"
-    - "+.pool.ntp.org"             # 国际 NTP 时间同步服务器
-    - "time.*.com"                 # 各大时间同步服务
+    - "+.pool.ntp.org"
+    - "time.*.com"
     - "time.*.gov"
     - "time.*.edu.cn"
-    - "localhost.ptlogin2.qq.com"  # 解决部分腾讯游戏/网页无法快捷登录的问题
+    - "localhost.ptlogin2.qq.com"
     - "localhost.sec.qq.com"
-    - "+.msftconnecttest.com"      # 微软网络连通性探测 (防止 Windows 报无网络)
+    - "+.msftconnecttest.com"
     - "+.msftncsi.com"
-    - "stun.*.*"                   # STUN 服务器（用于游戏/P2P NAT 穿透）
+    - "stun.*.*"
 
-  # 【优化5】Default DNS：只能填国内极速 IP，唯一作用是解析下方 DoH 的域名和你的节点域名
+  # 基础默认 DNS（用于解析 DoH 域名）
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
 
-  # 【优化6】日常默认 DNS：负责国内常规直连请求，使用加密 DoH 防止运营商劫持和广告注入
-  nameserver:
-    - https://doh.pub/dns-query         # 腾讯 DoH
-    - https://dns.alidns.com/dns-query  # 阿里 DoH
+  # 【必须配置】专用于解析你的 VPS 节点域名的 DNS（必须直连，不可走代理）
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - 223.5.5.5
 
-  # 【优化7】策略 DNS (替代并超越 fallback)：精准定向解析
+  # 日常默认直连 DNS
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
+  # 策略 DNS (精准定向分流)
   nameserver-policy:
-    # 明确为国内域名的，强制走国内 DoH 解析
     "geosite:cn":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
     
-    # 明确为被墙或国外的域名，直接走国外 DoH (受 respect-rules 保护，通过 VPS 查询，100% 真实结果)
     "geosite:gfw,geolocation-!cn":
       - https://dns.google/dns-query
       - https://cloudflare-dns.com/dns-query
     
-    # 你之前自己列举的几个特定外网域名，单独圈出走国外 DNS
     "+.google.com, +.facebook.com, +.youtube.com":
       - https://dns.google/dns-query
       - https://cloudflare-dns.com/dns-query
