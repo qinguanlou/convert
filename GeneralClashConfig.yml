@@ -78,7 +78,3 @@ dns:
     "geosite:gfw,geolocation-!cn":
       - https://dns.google/dns-query
       - https://cloudflare-dns.com/dns-query
-    
-    "+.google.com, +.facebook.com, +.youtube.com":
-      - https://dns.google/dns-query
-      - https://cloudflare-dns.com/dns-query
