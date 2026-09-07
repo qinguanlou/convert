@@ -1,9 +1,16 @@
 # =================基础设置=================
 allow-lan: true
 bind-address: "*"
+
+# 关闭 IPv6
 ipv6: false
+
 mode: rule
 log-level: info
+
+# 统一节点延迟测试
+unified-delay: true
+
 external-controller: 127.0.0.1:9090
 
 # =================实验性功能=================
@@ -13,6 +20,32 @@ experimental:
 # =================Profile 缓存设置=================
 profile:
   store-fake-ip: true
+
+# =========================================================
+# GEO 数据
+# =========================================================
+#
+# GeoSite：
+#   用于域名分类，例如 cn / gfw 等
+#
+# GeoIP：
+#   用于 IP 国家/地区判断
+#
+# 每 24 小时自动检查更新
+#
+# =========================================================
+
+geodata-mode: true
+
+geo-auto-update: true
+geo-update-interval: 24
+
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip-lite.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+
+# GEO/外部资源使用 ETag，资源没变化时避免重复下载
+etag-support: true
 
 # =================嗅探设置 (Fake-IP 绝配)=================
 sniffer:
@@ -62,7 +95,7 @@ dns:
   # 【必须配置】专用于解析你的 VPS 节点域名的 DNS（必须直连，不可走代理）
   proxy-server-nameserver:
     - https://doh.pub/dns-query
-    - 223.5.5.5
+    - https://dns.alidns.com/dns-query
 
   # 日常默认直连 DNS
   nameserver:
