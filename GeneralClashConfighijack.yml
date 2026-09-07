@@ -1,4 +1,7 @@
-# =================基础设置=================
+# =========================================================
+# 基础设置
+# =========================================================
+
 allow-lan: true
 bind-address: "*"
 
@@ -8,29 +11,73 @@ ipv6: false
 mode: rule
 log-level: info
 
+# 统一节点延迟测试
 unified-delay: true
 
 external-controller: 127.0.0.1:9090
 
 
-# =================实验性功能=================
+# =========================================================
+# 实验性功能
+# =========================================================
+
 experimental:
   ignore-resolve-fail: true
 
 
-# =================Profile=================
+# =========================================================
+# Profile
+# =========================================================
+
 profile:
+  # 保存当前选择的代理节点 / 策略组
+  store-selected: true
+
+  # 保存 Fake-IP 映射
   store-fake-ip: true
 
 
-# =================TUN=================
+# =========================================================
+# GEO 数据
+# =========================================================
+#
+# GeoSite：
+#   用于域名分类，例如 cn / gfw 等
+#
+# GeoIP：
+#   用于 IP 国家/地区判断
+#
+# 每 24 小时自动检查更新
+#
+# =========================================================
+
+geodata-mode: true
+
+geo-auto-update: true
+geo-update-interval: 24
+
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip-lite.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+
+# GEO/外部资源使用 ETag，资源没变化时避免重复下载
+etag-support: true
+
+
+# =========================================================
+# TUN
+# =========================================================
+
 tun:
   enable: true
 
-  # 自动检测当前网络接口
+  # TUN 设备名称
+  device: Mihomo
+
+  # 自动检测当前实际网络接口
   auto-detect-interface: true
 
-  # 自动路由进 TUN
+  # 自动添加 TUN 路由
   auto-route: true
 
   # DNS 劫持
@@ -38,29 +85,39 @@ tun:
     - any:53
     - tcp://any:53
 
-  # TUN 虚拟网卡
-  device: Mihomo
-
+  # TUN MTU
   mtu: 1500
 
-  # Android
-  stack: gvisor
+  # Android TUN 网络栈
+  stack: mixed
 
-  # 严格路由，减少绕过 TUN 的可能
+  # 严格路由，减少绕过 TUN / DNS 的可能
   strict-route: true
 
 
-# ================= Sniffer =================
-# Fake-IP + 嗅探，用于在部分程序只提供 IP 的情况下
-# 恢复实际域名，从而继续按照域名规则分流
+# =========================================================
+# Sniffer
+# =========================================================
+#
+# Fake-IP 环境下辅助恢复真实域名，
+# 让域名规则能够继续生效。
+#
+# =========================================================
+
 sniffer:
   enable: true
 
+  # 使用 DNS → Fake-IP 映射
   force-dns-mapping: true
+
+  # 对纯 IP 连接也尝试嗅探域名
   parse-pure-ip: true
+
+  # 嗅探到域名后覆盖原始目标
   override-destination: true
 
   sniff:
+
     TLS:
       ports:
         - 443
@@ -73,36 +130,41 @@ sniffer:
       override-destination: true
 
 
-# ================= DNS =================
+# =========================================================
+# DNS
+# =========================================================
+
 dns:
   enable: true
 
-  # Mihomo DNS 服务监听地址
+  # Mihomo DNS 服务监听
   listen: 0.0.0.0:1053
 
-  # 禁止 AAAA / IPv6 DNS
+  # 关闭 IPv6 DNS
   ipv6: false
-
-  # DNS 连接本身遵循 Clash 分流规则
-  #
-  # 国内 DNS → 直连
-  # 国外 DNS → 根据 rules → PROXY
-  #
-  # 这样 DNS 请求本身也不会固定走 DIRECT。
-  respect-rules: true
 
   # Fake-IP
   enhanced-mode: fake-ip
+
   fake-ip-range: 198.18.0.1/16
 
+  # 黑名单模式：
   # 默认所有域名使用 Fake-IP，
-  # 只有下面这些例外域名返回真实 IP
+  # 只有 fake-ip-filter 中的域名不使用 Fake-IP
   fake-ip-filter-mode: blacklist
 
+
+  # =======================================================
+  # Fake-IP 排除列表
+  # =======================================================
+
   fake-ip-filter:
+
+    # 局域网、本地域名
     - "*.lan"
     - "*.local"
     - "*.arpa"
+    - "localhost"
 
     # 时间同步
     - "+.pool.ntp.org"
@@ -123,61 +185,92 @@ dns:
     - "stun.*.*"
 
 
-  # ================= DNS 引导 =================
-  # 仅用于解析下面这些 DoH 服务器本身的域名。
+  # =======================================================
+  # DNS 连接遵循 Clash Rules
+  # =======================================================
   #
-  # 必须使用 IP 地址，避免产生 DNS 鸡生蛋问题。
+  # 非常重要：
+  #
+  # 国内 DNS：
+  #   通常 → DIRECT
+  #
+  # 国外 DNS：
+  #   通常 → PROXY → VPS
+  #
+  # =======================================================
+
+  respect-rules: true
+
+
+  # =======================================================
+  # DNS 引导
+  # =======================================================
+  #
+  # 仅用于解析 DoH 服务器自身的域名：
+  #
+  # doh.pub
+  # dns.alidns.com
+  # dns.google
+  # cloudflare-dns.com
+  #
+  # 不使用 system，减少 Android 系统 DNS 介入。
+  #
+  # =======================================================
+
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
 
 
-  # ================= 国内 DNS =================
-  # 国内域名使用国内 DNS
+  # =======================================================
+  # 默认 DNS
+  # =======================================================
   #
-  # 由于 respect-rules=true，
-  # DNS 连接本身也会遵循你的 rules。
+  # 没有命中 nameserver-policy 的域名，
+  # 默认使用国内 DNS。
   #
-  # 你的规则把这类 DNS 判为 DIRECT 时，
-  # 就会直连腾讯/阿里。
+  # =======================================================
+
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
 
 
-  # ================= DNS 分流 =================
+  # =======================================================
+  # DNS 分流
+  # =======================================================
   #
-  # 中国大陆域名：
-  #   腾讯 DoH / 阿里 DoH
+  # 国内域名：
+  #   → 国内 DNS
   #
-  # 墙外域名：
-  #   Google DoH / Cloudflare DoH
+  # 墙外 / 非 CN 域名：
+  #   → 国外 DNS
   #
-  # 由于 respect-rules=true，
-  # 墙外 DoH 连接会进一步按照你的 rules 走 PROXY。
-  #
+  # =======================================================
+
   nameserver-policy:
 
+    # 中国大陆域名
     "geosite:cn":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
 
+    # 墙外 / 非中国大陆域名
     "geosite:gfw,geolocation-!cn":
       - https://dns.google/dns-query
       - https://cloudflare-dns.com/dns-query
 
 
-  # ================= 代理节点 DNS =================
-  # 这个 DNS 只负责解析 VPS/代理节点域名。
+  # =======================================================
+  # 代理节点 DNS
+  # =======================================================
   #
-  # 例如：
-  # vps.example.com
-  #      ↓
-  # 腾讯 DoH / 阿里 DoH
-  #      ↓
-  # VPS IP
+  # 用于解析 VLESS / VMess / SS / HY2 等节点自身的域名。
   #
-  # 不负责普通网站 DNS。
+  # 使用国内 DNS，避免代理节点域名解析产生鸡生蛋问题。
+  #
+  # =======================================================
+
   proxy-server-nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
