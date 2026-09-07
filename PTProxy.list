@@ -10,7 +10,6 @@ DOMAIN-SUFFIX,hdsky.me
 DOMAIN-SUFFIX,springsunday.net
 DOMAIN-SUFFIX,hdroute.org
 DOMAIN-SUFFIX,u2.dmhy.org
-IP-CIDR,104.25.26.31/24
 DOMAIN-SUFFIX,hdhome.org
 DOMAIN-SUFFIX,tjupt.org
 DOMAIN-SUFFIX,nanyangpt.com
@@ -50,3 +49,4 @@ DOMAIN-SUFFIX,hdbao.cc
 DOMAIN-SUFFIX,bilibili.download
 DOMAIN-SUFFIX,pttime.org
 DOMAIN-SUFFIX,monikadesign.uk
+IP-CIDR,104.25.26.31/24
