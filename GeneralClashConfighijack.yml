@@ -1,0 +1,183 @@
+# =================基础设置=================
+allow-lan: true
+bind-address: "*"
+
+# 关闭 IPv6
+ipv6: false
+
+mode: rule
+log-level: info
+
+unified-delay: true
+
+external-controller: 127.0.0.1:9090
+
+
+# =================实验性功能=================
+experimental:
+  ignore-resolve-fail: true
+
+
+# =================Profile=================
+profile:
+  store-fake-ip: true
+
+
+# =================TUN=================
+tun:
+  enable: true
+
+  # 自动检测当前网络接口
+  auto-detect-interface: true
+
+  # 自动路由进 TUN
+  auto-route: true
+
+  # DNS 劫持
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+
+  # TUN 虚拟网卡
+  device: Mihomo
+
+  mtu: 1500
+
+  # Android
+  stack: gvisor
+
+  # 严格路由，减少绕过 TUN 的可能
+  strict-route: true
+
+
+# ================= Sniffer =================
+# Fake-IP + 嗅探，用于在部分程序只提供 IP 的情况下
+# 恢复实际域名，从而继续按照域名规则分流
+sniffer:
+  enable: true
+
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+
+  sniff:
+    TLS:
+      ports:
+        - 443
+        - 8443
+
+    HTTP:
+      ports:
+        - 80
+        - 8080-8880
+      override-destination: true
+
+
+# ================= DNS =================
+dns:
+  enable: true
+
+  # Mihomo DNS 服务监听地址
+  listen: 0.0.0.0:1053
+
+  # 禁止 AAAA / IPv6 DNS
+  ipv6: false
+
+  # DNS 连接本身遵循 Clash 分流规则
+  #
+  # 国内 DNS → 直连
+  # 国外 DNS → 根据 rules → PROXY
+  #
+  # 这样 DNS 请求本身也不会固定走 DIRECT。
+  respect-rules: true
+
+  # Fake-IP
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+
+  # 默认所有域名使用 Fake-IP，
+  # 只有下面这些例外域名返回真实 IP
+  fake-ip-filter-mode: blacklist
+
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "*.arpa"
+
+    # 时间同步
+    - "+.pool.ntp.org"
+    - "time.*.com"
+    - "time.*.gov"
+    - "time.*.edu.cn"
+    - "ntp.*.com"
+
+    # Windows 网络连通性检测
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+
+    # QQ 登录相关
+    - "localhost.ptlogin2.qq.com"
+    - "localhost.sec.qq.com"
+
+    # STUN
+    - "stun.*.*"
+
+
+  # ================= DNS 引导 =================
+  # 仅用于解析下面这些 DoH 服务器本身的域名。
+  #
+  # 必须使用 IP 地址，避免产生 DNS 鸡生蛋问题。
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+
+  # ================= 国内 DNS =================
+  # 国内域名使用国内 DNS
+  #
+  # 由于 respect-rules=true，
+  # DNS 连接本身也会遵循你的 rules。
+  #
+  # 你的规则把这类 DNS 判为 DIRECT 时，
+  # 就会直连腾讯/阿里。
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
+
+  # ================= DNS 分流 =================
+  #
+  # 中国大陆域名：
+  #   腾讯 DoH / 阿里 DoH
+  #
+  # 墙外域名：
+  #   Google DoH / Cloudflare DoH
+  #
+  # 由于 respect-rules=true，
+  # 墙外 DoH 连接会进一步按照你的 rules 走 PROXY。
+  #
+  nameserver-policy:
+
+    "geosite:cn":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+
+    "geosite:gfw,geolocation-!cn":
+      - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query
+
+
+  # ================= 代理节点 DNS =================
+  # 这个 DNS 只负责解析 VPS/代理节点域名。
+  #
+  # 例如：
+  # vps.example.com
+  #      ↓
+  # 腾讯 DoH / 阿里 DoH
+  #      ↓
+  # VPS IP
+  #
+  # 不负责普通网站 DNS。
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
