@@ -1,0 +1,10 @@
+# 内容：IPTV
+# 数量：8条
+DOMAIN-SUFFIX,mobaibox.com
+DOMAIN-SUFFIX,cctv.cn
+DOMAIN-SUFFIX,yangshipin.cn
+DOMAIN-SUFFIX,dnsany.com
+DOMAIN-SUFFIX,cmvideo.cn
+DOMAIN-SUFFIX,chinamobile.com
+DOMAIN-SUFFIX,ottdns.com
+[]IP-CIDR,183.207.0.0/16
