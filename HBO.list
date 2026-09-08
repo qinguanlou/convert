@@ -56,14 +56,6 @@ DOMAIN-SUFFIX,s3-ap-southeast-1.amazonaws.com
 DOMAIN-SUFFIX,warnermediacdn.com
 DOMAIN-SUFFIX,youboranqs01.com
 
-# NOW / NOW TV
-DOMAIN-SUFFIX,now-ashare.com
-DOMAIN-SUFFIX,now-tv.com
-DOMAIN-SUFFIX,now.com
-DOMAIN-SUFFIX,now.com.hk
-DOMAIN-SUFFIX,nowe.com
-DOMAIN-SUFFIX,nowe.hk
-
 # Other dependencies
 DOMAIN-SUFFIX,h264.io
 
