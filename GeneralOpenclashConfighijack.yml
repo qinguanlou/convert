@@ -1,0 +1,162 @@
+# =========================================================
+# 基础设置
+# =========================================================
+
+allow-lan: true
+bind-address: "*"
+
+# 关闭 IPv6
+ipv6: false
+
+mode: rule
+log-level: info
+
+# 统一节点延迟测试
+unified-delay: true
+
+external-controller: 127.0.0.1:9090
+
+
+# =========================================================
+# 实验性功能
+# =========================================================
+
+experimental:
+  ignore-resolve-fail: true
+
+
+# =========================================================
+# Profile
+# =========================================================
+
+profile:
+  # 保存当前选择的代理节点 / 策略组
+  store-selected: true
+
+  # 保存 Fake-IP 映射
+  store-fake-ip: true
+
+
+# =========================================================
+# GEO 数据
+# =========================================================
+
+geodata-mode: true
+
+geo-auto-update: true
+geo-update-interval: 24
+
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip-lite.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+
+etag-support: true
+
+
+# =========================================================
+# Sniffer
+# =========================================================
+
+sniffer:
+  enable: true
+
+  # 使用 DNS → Fake-IP 映射
+  force-dns-mapping: true
+
+  # 对纯 IP 连接尝试嗅探域名
+  parse-pure-ip: true
+
+  # 嗅探到域名后覆盖原始目标
+  override-destination: true
+
+  sniff:
+
+    TLS:
+      ports:
+        - 443
+        - 8443
+
+    HTTP:
+      ports:
+        - 80
+        - 8080-8880
+      override-destination: true
+
+
+# =========================================================
+# DNS
+# =========================================================
+
+dns:
+  enable: true
+
+  # Mihomo DNS 服务监听
+  listen: 0.0.0.0:1053
+
+  # 关闭 IPv6 DNS
+  ipv6: false
+
+  # Fake-IP
+  enhanced-mode: fake-ip
+
+  fake-ip-range: 198.18.0.1/16
+
+  # 黑名单模式
+  fake-ip-filter-mode: blacklist
+
+  fake-ip-filter:
+
+    # 局域网、本地域名
+    - "*.lan"
+    - "*.local"
+    - "*.arpa"
+    - "localhost"
+
+    # 时间同步
+    - "+.pool.ntp.org"
+    - "time.*.com"
+    - "time.*.gov"
+    - "time.*.edu.cn"
+    - "ntp.*.com"
+
+    # Windows 网络连通性检测
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+
+    # QQ
+    - "localhost.ptlogin2.qq.com"
+    - "localhost.sec.qq.com"
+
+    # STUN
+    - "stun.*.*"
+
+  # DNS 查询遵循 Clash Rules
+  respect-rules: true
+
+  # DNS 引导
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.119
+
+  # 默认 DNS
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
+  # DNS 分流
+  nameserver-policy:
+
+    # 中国大陆域名
+    "geosite:cn":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+
+    # GFW / 非 CN
+    "geosite:gfw,geolocation-!cn":
+      - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query
+
+  # 代理节点域名
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
