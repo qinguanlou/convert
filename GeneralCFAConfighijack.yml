@@ -145,7 +145,7 @@ dns:
   ipv6: false
 
   # Fake-IP
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
 
   fake-ip-range: 198.18.0.1/16
 
