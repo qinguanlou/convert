@@ -11,14 +11,15 @@ DOMAIN-SUFFIX,odylife.org
 DOMAIN-SUFFIX,xmsl.org
 DOMAIN-SUFFIX,emby.moe
 DOMAIN-SUFFIX,uhdnow.com
-DOMAIN-SUFFIX,onyra.cc
+DOMAIN-SUFFIX,215651.xyz
+DOMAIN-SUFFIX,imetyou.top
 DOMAIN-SUFFIX,nebulae.top
 DOMAIN-SUFFIX,nebula-media.org
-DOMAIN-SUFFIX,sakim.org
+DOMAIN-SUFFIX,sttss.de
 DOMAIN-SUFFIX,bangumi.ca
 DOMAIN-SUFFIX,nyamedia.tv
-DOMAIN-SUFFIX,imetyou.top
 DOMAIN-SUFFIX,vodka.monisaiche.cn
+DOMAIN-SUFFIX,cr18.eu.org
 DOMAIN-SUFFIX,jmsooo.com
 DOMAIN-SUFFIX,jmsuper.com
 DOMAIN-SUFFIX,iflya321.com
@@ -26,12 +27,14 @@ DOMAIN-SUFFIX,emby.wtf
 DOMAIN-SUFFIX,embyplus.org
 DOMAIN-SUFFIX,nijigem.by
 DOMAIN-SUFFIX,ciallo.party
-DOMAIN-SUFFIX,bilibili.uk
+DOMAIN-SUFFIX,biliblili.uk
 DOMAIN-SUFFIX,sl.al
 DOMAIN-SUFFIX,coemn.com
 DOMAIN-SUFFIX,ccemby.tk
 DOMAIN-SUFFIX,ccemby.ga
 DOMAIN-SUFFIX,ntrrr.top
+DOMAIN-SUFFIX,cn2gias.uk
+DOMAIN-SUFFIX,306699.xyz
 DOMAIN-SUFFIX,viclub.top
 DOMAIN-SUFFIX,feiyue.lol
 DOMAIN-SUFFIX,sfcj.org
@@ -40,17 +43,19 @@ DOMAIN-SUFFIX,ash.yt
 DOMAIN-SUFFIX,emby.my
 DOMAIN-SUFFIX,28.al
 DOMAIN-SUFFIX,mobaiemby.site
+DOMAIN-SUFFIX,chilledmelon.com
 DOMAIN-SUFFIX,saturday.video
 DOMAIN-SUFFIX,saturdayvideo.top
+DOMAIN-SUFFIX,saturdayent.top
 DOMAIN-SUFFIX,lilyemby.my
 DOMAIN-SUFFIX,lilyya.top
 DOMAIN-SUFFIX,lilyemby.com
 DOMAIN-SUFFIX,younoyes.com
 DOMAIN-SUFFIX,886223.xyz
 DOMAIN-SUFFIX,lemby.me
+DOMAIN-SUFFIX,hsu.life
 DOMAIN-SUFFIX,wenjian.de
 DOMAIN-SUFFIX,114514.quest
-DOMAIN-SUFFIX,cn2gias.uk
 DOMAIN-SUFFIX,lyezi.cc
 DOMAIN-SUFFIX,jingzhe.pro
 DOMAIN-SUFFIX,meowfly.de
@@ -62,26 +67,37 @@ DOMAIN-SUFFIX,okemby.org
 DOMAIN-SUFFIX,ichinosekotomi.com
 DOMAIN-SUFFIX,faemby.vip
 DOMAIN-SUFFIX,potdot.de
-DOMAIN-SUFFIX,lunarisvault.com
+DOMAIN-SUFFIX,atrct.cn
 DOMAIN-SUFFIX,inemby.us.ci
 DOMAIN-SUFFIX,xying1314.xyz
 DOMAIN-SUFFIX,zzm.li
-DOMAIN-SUFFIX,yxmm.xyz
+DOMAIN-SUFFIX,yusen6.ccwu.cc
+DOMAIN-SUFFIX,gxwplay.com
+DOMAIN-SUFFIX,5625678.xyz
+DOMAIN-SUFFIX,feimu.tv
+DOMAIN-SUFFIX,0d00.link
+DOMAIN-SUFFIX,eoos.top
+DOMAIN-SUFFIX,teawaya.com
+DOMAIN-SUFFIX,dijia.de
+DOMAIN-SUFFIX,haosao.de
+DOMAIN-SUFFIX,605305.xyz
+DOMAIN-SUFFIX,033388.xyz
+DOMAIN-SUFFIX,ysz.dpdns.org
+DOMAIN-SUFFIX,wybcs.work
+DOMAIN-SUFFIX,kingemby.com
+DOMAIN-SUFFIX,tbag.dpdns.org
+DOMAIN-SUFFIX,makifx.com
+DOMAIN-SUFFIX,entertang.work
 DOMAIN-SUFFIX,emos.best
+DOMAIN-SUFFIX,trevely.de5.net
 DOMAIN-SUFFIX,okbap.com
 DOMAIN-SUFFIX,shufu.club
-DOMAIN-SUFFIX,dpdns.org
+DOMAIN-SUFFIX,111660.xyz
 DOMAIN-SUFFIX,heisi.org
+DOMAIN-SUFFIX,emby.edu.kg
+DOMAIN-SUFFIX,di0.uk
 DOMAIN-SUFFIX,tanhuatv.site
-DOMAIN-SUFFIX,ii00.cc
-DOMAIN-SUFFIX,emby.kim
-DOMAIN-SUFFIX,chilledmelon.com
-DOMAIN-SUFFIX,rjf37.com
-DOMAIN-SUFFIX,emby.pro
-DOMAIN-SUFFIX,embyvip.org
 DOMAIN-SUFFIX,20120714.xyz
-DOMAIN-SUFFIX,as174.de
-DOMAIN-SUFFIX,staryuki.com
 DOMAIN-SUFFIX,plex.tv
 DOMAIN-SUFFIX,plex.direct
 IP-CIDR,168.119.137.205/32,no-resolve
@@ -99,6 +115,12 @@ IP-CIDR,185.126.80.94/32,no-resolve
 # IP-CIDR,135.180.189.141/32,no-resolve
 # IP-CIDR,193.122.114.13/32,no-resolve
 # DOMAIN-SUFFIX,259772.xyz    //yimeng
+# DOMAIN-SUFFIX,yxmm.xyz     //营养快线
+# DOMAIN-SUFFIX,as174.de    //hxd
+# DOMAIN-SUFFIX,staryuki.com   //星星瑟瑟服
+# DOMAIN-SUFFIX,lunarisvault.com   //lunarisvault
+# DOMAIN-SUFFIX,rjf37.com   //入机emby
+# DOMAIN-SUFFIX,emby.kim   //熊猫emby
 # DOMAIN-SUFFIX,beebi.org     //bebe emby
 # DOMAIN-SUFFIX,ucloudhost.top   //kiku emby
 # DOMAIN-SUFFIX,pcmhub.org      //pcm emby
@@ -143,7 +165,6 @@ IP-CIDR,185.126.80.94/32,no-resolve
 # DOMAIN-SUFFIX,pilipili.club       //pilipili
 # DOMAIN-SUFFIX,zox.show    //zox
 # DOMAIN-SUFFIX,zoxi.org    //zox
-# DOMAIN-SUFFIX,cn2gias.uk   //守候网络
 # DOMAIN-SUFFIX,nc.monisaiche.cn  //备胎服
 # DOMAIN-SUFFIX,889393.xyz     //阿甘
 # DOMAIN-SUFFIX,freetz.top     //魔法emby
